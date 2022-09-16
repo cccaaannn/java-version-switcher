@@ -42,7 +42,6 @@ IF "%2" == "-m" (
     set v_SET_MAVEN_FLAG=1
   )
 )
-cmd
 
 
 :: --- Set java version --- 
