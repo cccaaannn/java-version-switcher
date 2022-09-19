@@ -15,17 +15,18 @@ Switches between java and maven versions for cmd sessions.
     - Ex: M2_HOME_3.6
 ##
 ## Commands
-- `-h` Prints help message.
-- `-m` Used for switching maven version.
+- `-h`, `--help` Prints help message.
+- `-a`, `--about` Shows about jvs.
+- `-m <MAVEN_VERSION>`, `--maven <MAVEN_VERSION>` Used for switching maven version.
 ##
 ## Usage
 - jvs <JAVA_VERSION>
 - jvs <JAVA_VERSION> -m <MAVEN_VERSION>
 ##
 ## Examples
-- jvs 18
+- jvs 11
 - jvs 1.8 -m 3.6
-- jvs 17 -m 3.8
+- jvs 18 --maven 3.8
 
 &nbsp;
 
