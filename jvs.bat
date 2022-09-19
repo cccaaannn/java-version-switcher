@@ -37,7 +37,17 @@ IF "%1" == "-m" (
     goto :only-maven-version-provided-error
 )
 
+IF "%1" == "--maven" (
+    goto :only-maven-version-provided-error
+)
+
 IF "%2" == "-m" (
+  IF not "%3" == "" (
+    set v_SET_MAVEN_FLAG=1
+  )
+)
+
+IF "%2" == "--maven" (
   IF not "%3" == "" (
     set v_SET_MAVEN_FLAG=1
   )
@@ -99,7 +109,7 @@ IF "%v_NEW_JAVA_HOME%"=="" (
 
 :: If java version exists proceed
 :: Set new JAVA_HOME
-set JAVA_HOME=%v_NEW_JAVA_HOME%
+set "JAVA_HOME=%v_NEW_JAVA_HOME%"
 set "Path=%v_NEW_JAVA_HOME%\bin;%Path%"
 goto :set-java-home-return
 
@@ -121,7 +131,7 @@ IF "%v_NEW_M2_HOME%"=="" (
 
 :: If maven version exists proceed
 :: Set new M2_HOME
-set M2_HOME=%v_NEW_M2_HOME%
+set "M2_HOME=%v_NEW_M2_HOME%"
 set "Path=%v_NEW_M2_HOME%\bin;%Path%"
 goto :set-maven-home-return
 
@@ -131,7 +141,7 @@ goto :set-maven-home-return
 TITLE jvs help
 color
 echo --- Java Version Switcher --- 
-echo Switches between java and maven versions.
+echo Switches between java and maven versions for cmd sessions.
 echo:
 echo - Script setup
 echo    1- In addition to regular JAVA_HOME environment variable, different java versions has to be set as environment variables in order to script to work.
@@ -139,17 +149,19 @@ echo    2- Environment variable naming should follow this standard "JAVA_HOME_<V
 echo    3- Using same naming standard, more M2_HOME variables can also be set for maven version switching "M2_HOME_<VERSION>". Ex: M2_HOME_3.6
 echo:
 echo - Commands
-echo    -h         Prints this help message.
-echo    -m         Used for switching maven version.
+echo    -h, --help      Prints help message.
+echo    -a, --about     Shows about jvs.
+echo    -m ^<MAVEN_VERSION^>, --maven ^<MAVEN_VERSION^> 
+echo                    Used for switching maven version.
 echo:
 echo - Usage
 echo    jvs ^<JAVA_VERSION^>
 echo    jvs ^<JAVA_VERSION^> -m ^<MAVEN_VERSION^>
 echo:
 echo - Examples
-echo    jvs 18
+echo    jvs 11
 echo    jvs 1.8 -m 3.6
-echo    jvs 17 -m 3.8
+echo    jvs 18 --maven 3.8
 goto :EOF
 
 :: About menu
